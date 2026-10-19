@@ -196,8 +196,10 @@ spec:
               value: {{ printf "%s/npm-global" $mountPath | quote }}
             {{- end }}
             {{- range $key, $value := .Values.env }}
+            {{- if $value }}
             - name: {{ $key }}
               value: {{ printf "%v" $value | quote }}
+            {{- end }}
             {{- end }}
             {{- if $apiServerEnabled }}
             - name: API_SERVER_ENABLED
